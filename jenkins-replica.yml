@@ -1,0 +1,19 @@
+apiVersion: apps/v1   #(apiVersion for replicaset)
+kind: Replicaset      #(Kind objects we are deploying)
+metadata:
+  name: jenkins-replicas
+  labels:             #(for grouping together)
+    app: jenkins      #(we can use any key, here all the containers will be mapped under jenkins)
+spec:
+  replicas: 2         #(in how many instance we need to create the pod)(depends on m/c capacity)
+  selector:           #(This will hold two pods together)
+    matchLabels:
+      app: match      #Label to group all pods together
+  template:           #Which pod template to use or which pod replica need to be created
+    metadata:
+      name: jenkins-2
+      labels: match
+    spec:
+      containers:
+        - name: jenkins
+          image: jenkins/jenkins:lts
