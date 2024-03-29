@@ -1,0 +1,9 @@
+apiVersion: v1 #(apiversion will define what kind of object we will deploy) (v1 is for pod) (apiversion is directly proportional to kind)
+kind: Pod      #(what objects we will deploy)
+metadata:      #(details)
+  name: jenkins #(Name of the Pod we are creating)
+ #namespace: sample #assign this Pod to specific namespace  
+spec:          #(refers to specification of jenkins object)
+  containers:  #(What are we creating)
+    - name: jenkins
+      image: jenkins/jenkins:lts
