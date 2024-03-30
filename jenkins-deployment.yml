@@ -1,21 +1,12 @@
-#apiVersion: v1
-#kind: Pod
-#metadata:
-# name: jenkins
-#spec:
-# containers:
-#   - name: jenkins
-#     image: jenkins/jenkins:lts
-
 apiVersion: apps/v1     #(apiVersion for replicaset)
 #kind: ReplicaSet       #(Kind objects we are deploying)
 kind: Deployment      
 metadata:
-  name: jenkins-replica
+  name: jenkins-deployment
   labels:               #(for grouping together)
     app: jenkins        #(we can use any key, here all the containers will be mapped under jenkins)
 spec:
-  replicas: 2           #(in how many instance we need to create the pod)(depends on m/c capacity)
+  replicas: 3           #(in how many instance we need to create the pod)(depends on m/c capacity)
   strategy:             #(in case of deployment need to specify what kind of strategy wew are following)
     type: RollingUpdate #(Type of startegy)
     rollingUpdate:
@@ -32,4 +23,4 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: jenkins/jenkins:lts                           
+          image: jenkins/jenkins:lts

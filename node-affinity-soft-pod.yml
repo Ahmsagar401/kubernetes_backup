@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-selector-pod1
+  labels:
+    app: jenkins
+spec:
+  containers:
+    - name: jenkins-pod
+      image: jenkins/jenkins:lts
+  affinity:
+    nodeAffinity:   
+      preferredDuringSchedulingIgnoredDuringExecution:     
+        - weight: 1
+          preference:
+            matchExpressions:
+            - key: size
+              operator: In              #We can specify NotIn oprator as well
+              values:
+                - worker-node-1
+             #  - worker-node-2         We can give multiple nodes as well
+             #  - worker-node-3  
+
