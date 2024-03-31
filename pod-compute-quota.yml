@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: compute-pod
+  namespace: compute-namespace
+spec:
+  containers:
+    - name: compute-container
+      image: jenkins/jenkins:lts
+      resources:
+        requests:        
+          memory: "250Mi"
+          cpu: "0.1"
+        limits:
+          cpu: "0.5"
+          memory: "500Mi"    
+           # resources      <Object>
+           #limits      <map[string]string>
+           #requests    <map[string]string> 

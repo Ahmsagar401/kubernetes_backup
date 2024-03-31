@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: taint-pod-2
+  labels:
+    app: jenkins
+spec:
+  containers:
+    - name: jenkins
+      image: jenkins/jenkins:lts      
+  tolerations:
+    - key: "colour"                   #whatever key we have passed during tainting
+      operator: "Equal"               #2 types -> equal or exist
+      value: "red"                    #value passed to the key while tainting
+      effect: "NoSchedule"            #what effect we are passing NoSchedule, NoPreferSchedule, NoExecute    
