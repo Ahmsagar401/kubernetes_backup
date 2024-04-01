@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: podlimits
+  namespace: mynamespace
+spec:
+  limits:
+    - default:
+        cpu: 1                         #max cpu that a container can use
+        memory: "500Mi"                #max memory that a container can use
+      defaultRequest:
+        cpu: 0.1                       #cpu assigned when a container is created
+        memory: "250Mi"                #memory assigned when a container is created
+      type: Container
