@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-volume
+  labels:
+    app: jenkins
+  namespace: mynamespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myjenkins
+  template:
+    metadata:
+      name: jenkins-template
+      labels:
+        app: myjenkins
+    spec:
+      containers:
+        - name: jenkins-container
+          image: jenkins/jenkins:lts
+          volumeMounts: 
+            - mountPath: /var/jenkins_home   #Mounting the volume    
+              name: myvolume            
+      volumes:
+        - name: myvolume    #Name of the volume 
+          hostPath:         #What type of volume we have created
+            path: /root/jenkins_backup      #Path where we have created the directory
+            type: Directory       #Type of volume we have crated
