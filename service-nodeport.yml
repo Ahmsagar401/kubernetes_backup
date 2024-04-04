@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+     name: jenkins-node-port
+spec:
+    type: NodePort        (if we want to define nodeport we need to define a name orelse by default it will take cluster service) 
+    selector:             (To link service)
+        app: my-jenkins   (name of the pod created in earlier case)
+    ports:
+         - name: firstport
+           protocol: TCP      (which kind of port we will use)
+           port: 8080         (refers to port which we access)
+           targetPort: 8090   (mapped to container) 
+           nodePort: 30001    (port can only be within 30000 to 30767)
