@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-demo             #name of configmap
+data:
+  # property-like keys; each key maps to a simple value
+  player_initial_lives: "3"                                 #single data in key value form  
+  ui_properties_file_name: "user-interface.properties"      #data in key value form
+
+  # file-like keys                       
+  game.properties: |                         #passing data through files
+    enemy.types=aliens,monsters
+    player.maximum-lives=5    
+  user-interface.properties: |              #passing data through another file
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true  
+    Welcome to devops class
+    Kubernetes class ongoing
