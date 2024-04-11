@@ -1,0 +1,41 @@
+apiVersion: apps/v1         
+kind: Deployment      
+metadata:
+  name: jenkins-deployment
+  labels:               
+    app: jenkins        
+spec:
+  replicas: 1           
+  strategy:             
+    type: RollingUpdate 
+    rollingUpdate:
+     #maxSurge: 1       
+     #maxUnavailable: 0 
+  selector:            
+    matchLabels:
+      app: jenkins        
+  template:             
+    metadata:
+      name: jenkins-2
+      labels: 
+        app: jenkins
+    spec:
+      containers:
+        - name: jenkins
+          image: jenkins/jenkins:lts
+          env:
+            - name: JENKINS_OPTS
+              value: --prefix=/jenkins
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-cluster-ip
+spec:
+  selector:                          
+    app: jenkins                  
+  ports:
+    - name: pod-port
+      protocol: TCP                          
+      port: 8082                
+      targetPort: 8080   		  
