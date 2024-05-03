@@ -12,7 +12,8 @@ spec:
   template:           #Which pod template to use or which pod replica need to be created
     metadata:
       name: jenkins-2
-      labels: match
+      labels:
+        app:match
     spec:
       containers:
         - name: jenkins
