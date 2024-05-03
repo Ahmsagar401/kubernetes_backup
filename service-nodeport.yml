@@ -11,4 +11,4 @@ spec:
            protocol: TCP      (which kind of port we will use)
            port: 8080         (refers to port which we access)
            targetPort: 8090   (mapped to container) 
-           nodePort: 30001    (port can only be within 30000 to 30767)
+           nodePort: 30001    (port can only be within 30000 to 32767)
